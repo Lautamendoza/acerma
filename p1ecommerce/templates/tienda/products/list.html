@@ -1,0 +1,38 @@
+{% extends "tienda/base.html" %}
+{% load static %}
+{% block title %}
+  {% if category %}{{ category.name }}{% else %}Productos{% endif %}
+{% endblock %}
+{% block content %}
+  <div class="col-md-3">
+    <h3>Categorias</h3>
+    <ul class="list-group">
+      <li class="list-group-item {% if not category %}active{% endif %}">
+        <a href="{% url 'tienda:product_list' %}"  style="color: black;">All</a>
+      </li>
+      {% for c in categories %}
+        <li class="list-group-item {% if category.slug == c.slug %}active{% endif %}">
+          <a href="{{ c.get_absolute_url }}"  style="color: black;">{{ c.name }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+  </div>
+  <div class="col-md-9">
+    <h1 class="mb-4">{% if category %}{{ category.name }}{% else %}Productos{% endif %}</h1>
+    <div class="row">
+      {% for product in products %}
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.jpg' %}{% endif %}" class="card-img-top" alt="{{ product.name }}">
+            
+            <div class="card-body">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text">$ {{ product.price }}</p>
+              <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Ver detalles</a>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endblock %}
