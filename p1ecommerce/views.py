@@ -1,11 +1,19 @@
 from django.shortcuts import render, get_object_or_404
 from .models import Product, Category
 from cart.forms import CartAddProductForm
+from django.db.models import Q
 
 def product_list(request, category_slug=None):
-    category= None
-    categories= Category.objects.all()
-    products= Product.objects.filter(available=True)
+    queryset = request.GET.get('buscar')
+    if queryset:
+        products = Product.objects.filter(
+            Q(name__icontains=queryset),
+            Q(description__icontains=queryset)
+        ).distinct()
+
+    category = None
+    categories = Category.objects.all()
+    products = Product.objects.filter(available=True)
 
     if category_slug:
         category = get_object_or_404(Category,
@@ -31,3 +39,5 @@ def product_detail(request, id, slug):
                   {'product': product,
                   'cart_product_form': cart_product_form })
 
+def formas_de_pago(request):
+    return render(request, 'tienda/formaspago.html')
