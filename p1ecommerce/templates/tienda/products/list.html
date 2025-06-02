@@ -1,22 +1,50 @@
-{% extends "tienda/base.html" %}
+{% extends "base.html" %}
 {% load static %}
+
 {% block title %}
   {% if category %}{{ category.name }}{% else %}Productos{% endif %}
 {% endblock %}
+
 {% block content %}
+
+<!-- Carrusel de imágenes -->
+<div id="carouselExample" class="carousel slide mb-5" data-bs-ride="carousel">
+  <div class="carousel-inner">
+    <div class="carousel-item active">
+      <img src="{% static 'img/car1.png' %}" class="d-block w-100" alt="Imagen 1">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/car2.png' %}" class="d-block w-100" alt="Imagen 2">
+    </div>
+    <div class="carousel-item">
+      <img src="{% static 'img/car3.png' %}" class="d-block w-100" alt="Imagen 3">
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Anterior</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Siguiente</span>
+  </button>
+</div>
+
+<div class="row">
   <div class="col-md-3">
-    <h3>Categorias</h3>
+    <h3>Categorías</h3>
     <ul class="list-group">
       <li class="list-group-item {% if not category %}active{% endif %}">
-        <a href="{% url 'tienda:product_list' %}"  style="color: black;">All</a>
+        <a href="{% url 'tienda:product_list' %}" style="color: black;">Todas</a>
       </li>
       {% for c in categories %}
         <li class="list-group-item {% if category.slug == c.slug %}active{% endif %}">
-          <a href="{{ c.get_absolute_url }}"  style="color: black;">{{ c.name }}</a>
+          <a href="{{ c.get_absolute_url }}" style="color: black;">{{ c.name }}</a>
         </li>
       {% endfor %}
     </ul>
   </div>
+
   <div class="col-md-9">
     <h1 class="mb-4">{% if category %}{{ category.name }}{% else %}Productos{% endif %}</h1>
     <div class="row">
@@ -24,7 +52,6 @@
         <div class="col-md-4 mb-4">
           <div class="card">
             <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.jpg' %}{% endif %}" class="card-img-top" alt="{{ product.name }}">
-            
             <div class="card-body">
               <h5 class="card-title">{{ product.name }}</h5>
               <p class="card-text">$ {{ product.price }}</p>
@@ -35,4 +62,6 @@
       {% endfor %}
     </div>
   </div>
+</div>
+
 {% endblock %}
