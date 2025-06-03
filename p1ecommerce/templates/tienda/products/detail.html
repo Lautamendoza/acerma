@@ -3,27 +3,48 @@
 {% block title %}
   {{ product.name }}
 {% endblock %}
+
 {% block content %}
-  <div class="container mt-5 mb-5">
+<div class="container mt-5 mb-5">
+  <div class="card shadow-sm p-4">
     <div class="row">
-      <div class="col-md-5">
-        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.jpg' %}{% endif %}" class="img-fluid" alt="{{ product.name }}" style="max-width: 300px;">
+      <!-- Imagen -->
+      <div class="col-md-5 text-center">
+        <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.jpg' %}{% endif %}"
+             class="img-fluid rounded mx-auto d-block mb-3"
+             alt="{{ product.name }}"
+             style="max-width: 100%; max-height: 400px;">
       </div>
-      <div class="col-md-6">
-        <h1>{{ product.name }}</h1>
-        <h2>
-          <a href="{{ product.category.get_absolute_url }}">
+
+      <!-- Detalles del producto -->
+      <div class="col-md-7">
+        <h1 class="mb-3">{{ product.name }}</h1>
+        
+        <h5 class="mb-3">
+          Categoría:
+          <a href="{{ product.category.get_absolute_url }}" class="text-decoration-none text-primary">
             {{ product.category }}
           </a>
-        </h2>
-        <p class="price">${{ product.price }}</p>
-        <form action="{% url 'cart:cart_add' product.id %}" method="post">
+        </h5>
+
+        <p class="price fs-4 text-success fw-bold mb-4">
+          ${{ product.price }}
+        </p>
+
+        <form action="{% url 'cart:cart_add' product.id %}" method="post" class="mb-4">
           {{ cart_product_form }}
           {% csrf_token %}
-          <input type="submit" value="Agregar al carrito">
+          <button type="submit" class="btn btn-primary btn-lg">
+            Agregar al carrito
+          </button>
         </form>
-        <p>{{ product.description|linebreaks }}</p>
+
+        <div class="product-description">
+          <h5 class="mb-2">Descripción</h5>
+          <p>{{ product.description|linebreaks }}</p>
+        </div>
       </div>
     </div>
-  </div>  
+  </div>
+</div>
 {% endblock %}

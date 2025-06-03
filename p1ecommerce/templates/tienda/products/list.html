@@ -8,8 +8,9 @@
 {% block content %}
 
 <!-- Carrusel de imágenes -->
-<div id="carouselExample" class="carousel slide mb-5" data-bs-ride="carousel">
-  <div class="carousel-inner">
+
+<div id="carouselExample" class="carousel slide mb-5 shadow" data-bs-ride="carousel">
+  <div class="carousel-inner rounded">
     <div class="carousel-item active">
       <img src="{% static 'img/car1.png' %}" class="d-block w-100" alt="Imagen 1">
     </div>
@@ -28,40 +29,65 @@
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Siguiente</span>
   </button>
-</div>
+  </div>  
+
 
 <div class="row">
+  <!-- Categorías -->
   <div class="col-md-3">
-    <h3>Categorías</h3>
-    <ul class="list-group">
-      <li class="list-group-item {% if not category %}active{% endif %}">
-        <a href="{% url 'tienda:product_list' %}" style="color: black;">Todas</a>
-      </li>
-      {% for c in categories %}
-        <li class="list-group-item {% if category.slug == c.slug %}active{% endif %}">
-          <a href="{{ c.get_absolute_url }}" style="color: black;">{{ c.name }}</a>
+  <div class="card shadow-sm mb-4" style="position: sticky; top: 20px;">
+    <div class="card-body">
+      <h4 class="card-title mb-3">Categorías</h4>
+      <ul class="list-group">
+        <li class="list-group-item {% if not category %}active{% endif %}">
+          <a href="{% url 'tienda:product_list' %}" class="text-decoration-none d-block {% if not category %}text-white{% else %}text-dark{% endif %}">Todas</a>
         </li>
-      {% endfor %}
-    </ul>
-  </div>
-
-  <div class="col-md-9">
-    <h1 class="mb-4">{% if category %}{{ category.name }}{% else %}Productos{% endif %}</h1>
-    <div class="row">
-      {% for product in products %}
-        <div class="col-md-4 mb-4">
-          <div class="card">
-            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.jpg' %}{% endif %}" class="card-img-top" alt="{{ product.name }}">
-            <div class="card-body">
-              <h5 class="card-title">{{ product.name }}</h5>
-              <p class="card-text">$ {{ product.price }}</p>
-              <a href="{{ product.get_absolute_url }}" class="btn btn-primary">Ver detalles</a>
-            </div>
-          </div>
-        </div>
-      {% endfor %}
+        {% for c in categories %}
+          <li class="list-group-item {% if category.slug == c.slug %}active{% endif %}">
+            <a href="{{ c.get_absolute_url }}" class="text-decoration-none d-block {% if category.slug == c.slug %}text-white{% else %}text-dark{% endif %}">
+              {{ c.name }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
     </div>
   </div>
 </div>
+
+
+  <!-- Productos -->
+  <div class="col-md-9">
+    <h2 class="mb-4">{% if category %}{{ category.name }}{% else %}Todos los productos{% endif %}</h2>
+    <div class="row">
+      {% for product in products %}
+        <div class="col-md-4 mb-4">
+          <div class="card h-100 shadow-sm border-0 hover-shadow">
+            <img src="{% if product.image %}{{ product.image.url }}{% else %}{% static 'img/no_image.jpg' %}{% endif %}" class="card-img-top" alt="{{ product.name }}">
+            <div class="card-body d-flex flex-column justify-content-between">
+              <h5 class="card-title">{{ product.name }}</h5>
+              <p class="card-text text-success fw-bold">$ {{ product.price }}</p>
+              <a href="{{ product.get_absolute_url }}" class="btn btn-outline-primary mt-auto">Ver detalles</a>
+            </div>
+          </div>
+        </div>
+      {% empty %}
+        <p class="text-muted">No hay productos disponibles.</p>
+      {% endfor %}
+    </div>
+    </div>
+    </div>
+    <div class="hidden-xs visible-ms col-sm-12 col-md-8 banner-column">
+
+  <div class="banner-item Image" style="margin-top: 20px;">
+    <a href=" " target="_self"><img src="{% static 'img/71.png' %}" alt="Banner" class="img-responsive"></a>
+
+  </div>
+
+</div>
+
+            </div>
+
+
+
 
 {% endblock %}

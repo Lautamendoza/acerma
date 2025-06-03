@@ -41,3 +41,15 @@ def product_detail(request, id, slug):
 
 def formas_de_pago(request):
     return render(request, 'tienda/formaspago.html')
+
+def envios(request):
+    return render(request, 'tienda/envios.html')
+
+def cambiosyd(request):
+    return render(request, 'tienda/cambiosyd.html')
+
+def preguntas(request):
+    return render(request, 'tienda/preguntas.html')
+
+def nosotros(request):
+    return render(request, 'tienda/nosotros.html')
