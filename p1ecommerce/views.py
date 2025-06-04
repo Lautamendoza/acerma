@@ -53,3 +53,6 @@ def preguntas(request):
 
 def nosotros(request):
     return render(request, 'tienda/nosotros.html')
+
+def cart_details(request):
+    return render(request, 'cart/details.html')
