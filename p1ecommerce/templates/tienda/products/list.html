@@ -75,19 +75,86 @@
       {% endfor %}
     </div>
     </div>
-    </div>
-    <div class="hidden-xs visible-ms col-sm-12 col-md-8 banner-column">
+ <h1 class="text-center my-4">Marcas que confían en nosotros</h1>
 
-  <div class="banner-item Image" style="margin-top: 20px;">
-    <a href=" " target="_self"><img src="{% static 'img/71.png' %}" alt="Banner" class="img-responsive"></a>
+<style>
+  .contenedor-flex {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 50px;
+    margin-top: 20px;
+    margin-bottom: 40px;
+  }
 
-  </div>
+  .contenedor-flex a img {
+    width: 100px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: transform 0.3s;
+  }
 
+  .contenedor-flex a img:hover {
+    transform: scale(1.05);
+  }
+</style>
+
+<div class="contenedor-flex">
+  <a href="https://brimaxargentina.com.ar/"><img src="{% static 'img/brimax.png' %}" alt="Marca 1"></a>
+  <a href="https://corblock.com.ar/"><img src="{% static 'img/corblock.png' %}" alt="Marca 2"></a>
+  <a href="https://www.knauf.com.ar/"><img src="{% static 'img/knauf.png' %}" alt="Marca 3"></a>
+  <a href="https://lomanegra.com.ar/"><img src="{% static 'img/lomanegra.png' %}" alt="Marca 4"></a>
+  <a href="https://palmar.com.ar/"><img src="{% static 'img/palmar.png' %}" alt="Marca 5"></a>
+  <a href="https://ternium.com.ar/"><img src="{% static 'img/ternium.png' %}" alt="Marca 6"></a>
 </div>
 
-            </div>
+  </div>
+</div>
 
 
 
 
+<style>
+      .galeria-flex {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-top: 10px;
+      }
+
+      .galeria-flex img {
+        width: 600px;
+        height: 400px;
+        border-radius: 10px;
+        object-fit: contain;
+      }
+    </style>
+
+    <div class="galeria-flex">
+      <img src="{% static 'img/72.png' %}" alt="Imagen 1">  <a href="/">
+      <img src="{% static 'img/71.png' %}" alt="Imagen 2">  <a href="/">
+      <img src="{% static 'img/70.png' %}" alt="Imagen 3">  <a href="/">
+
+    </div>
+  </div>
+</div>
+
+<div class="banner-grande" style="text-align: center;">
+  <img src="{% static 'img/bannergrande.jpg' %}" alt="Logo">
+</div>
+<br>
+
+<div class="pie" style="text-align: center;">
+  <img src="{% static 'img/pie.png' %}" alt="Logo">
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-12 text-center">
+      <p class="text-muted">© 2023 Menara Corralón. Todos los derechos reservados.</p>
+    </div>
+  </div>
+
+        
 {% endblock %}
