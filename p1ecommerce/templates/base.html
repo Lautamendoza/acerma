@@ -40,7 +40,7 @@
     <div class="row">
       <div class="col-md-12">
         <form method="get" action="{% url 'tienda:product_list' %}" class="mb-4 d-flex">
-          <input type="text" name="search" class="form-control me-2" placeholder="Buscar productos..." value="{{ request.GET.search }}">
+          <input type="text" name="search" class="form-control me-2" placeholder="¿Qué material estás buscando?" value="{{ request.GET.search }}">
           <button type="submit" class="btn btn-primary">Buscar</button>
         </form>
       </div>
