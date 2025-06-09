@@ -58,3 +58,6 @@ def nosotros(request):
 
 def cart_details(request):
     return render(request, 'cart/details.html')
+
+def hormigon(request):
+    return render(request, 'tienda/hormigon.html')
