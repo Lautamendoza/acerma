@@ -13,7 +13,7 @@ def product_list(request, category_slug=None):
         category = get_object_or_404(Category, slug=category_slug)
         products = products.filter(category=category)
 
-    query = request.GET.get('search')  # Obtener texto del input
+    query = request.GET.get('search') 
     if query:
         products = products.filter(
             Q(name__icontains=query) | Q(description__icontains=query)
