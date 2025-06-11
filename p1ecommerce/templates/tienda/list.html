@@ -6,7 +6,16 @@
 {% endblock %}
 
 {% block content %}
-
+<div class="container mt-3">
+    <div class="row">
+      <div class="col-md-12">
+        <form method="get" action="{% url 'tienda:product_list' %}" class="mb-4 d-flex">
+          <input type="text" name="search" class="form-control me-2" placeholder="¿Qué material estás buscando?" value="{{ request.GET.search }}">
+          <button type="submit" class="btn btn-primary">Buscar</button>
+        </form>
+      </div>
+    </div>
+  </div>
 <!-- Carrusel de imágenes -->
 
 <div id="carouselExample" class="carousel slide mb-5 shadow p-0" data-bs-ride="carousel">

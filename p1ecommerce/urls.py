@@ -1,10 +1,14 @@
 from django.urls import path
 from . import views
-
+from django.contrib.auth import views as auth_views
+from django.contrib.auth.views import LogoutView
 app_name= 'tienda'
 
 urlpatterns = [
-   path('formas-de-pago/', views.formas_de_pago, name='formas_de_pago'),
+  path('login/', views.login_view, name='login'),
+  path('register/', views.register_view, name='register'), 
+  path('logout/', auth_views.LogoutView.as_view(next_page='/'), name='logout'),
+  path('formas-de-pago/', views.formas_de_pago, name='formas_de_pago'),
   path ('envios/', views.envios, name='envios'),
   path ('cambiosyd/', views.cambiosyd, name='cambiosyd'),
   path ('preguntas/', views.preguntas, name='preguntas'),

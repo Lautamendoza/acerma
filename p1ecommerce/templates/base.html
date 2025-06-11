@@ -15,7 +15,7 @@
         <img src="{% static 'img/menaracorralon.png' %}" alt="Logo" width="170" height="60" class="d-inline-block align-text-top">
       </a> 
 
-      <div class="d-flex align-items-center">
+      <div class="d-flex align-items-center me-3">
         <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="#b6180d" class="bi bi-cart3" viewBox="0 0 16 16">
           <path d="..." />
         </svg>
@@ -26,29 +26,26 @@
         <a href="{% url 'cart:cart_detail' %}"><button type="button" class="btn">Tu carro</button></a>
       </div>
 
-      <div class="d-flex ms-4">
+      <div class="d-flex ms-4 align-items-center">
         <a href="{% url 'tienda:formas_de_pago' %}"><button type="button" class="btn">Formas de pago</button></a>
         <a href="{% url 'tienda:cambiosyd' %}"><button type="button" class="btn">Envíos</button></a>
         <a href="{% url 'tienda:preguntas' %}"><button type="button" class="btn">Preguntas</button></a>
         <a href="{% url 'tienda:nosotros' %}"><button type="button" class="btn">Nosotros</button></a>
         <a href="{% url 'tienda:hormigon' %}"><button type="button" class="btn">Hormigón</button></a>
+
+        {% if user.is_authenticated %}
+          <span class="ms-3 me-2">Hola, {{ user.username }}</span>
+          <form method="post" action="{% url 'logout' %}" style="display: inline;">
+              {% csrf_token %}
+              <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+          </form>
+        {% else %}
+          <a href="{% url 'login' %}"><button type="button" class="btn btn-primary">Iniciar</button></a>
+        {% endif %}
       </div>
     </div>
   </nav>
 
-  <!-- FORMULARIO DE BÚSQUEDA -->
-  <div class="container mt-3">
-    <div class="row">
-      <div class="col-md-12">
-        <form method="get" action="{% url 'tienda:product_list' %}" class="mb-4 d-flex">
-          <input type="text" name="search" class="form-control me-2" placeholder="¿Qué material estás buscando?" value="{{ request.GET.search }}">
-          <button type="submit" class="btn btn-primary">Buscar</button>
-        </form>
-      </div>
-    </div>
-  </div>
-
-  <!-- CONTENIDO PRINCIPAL -->
   <div class="container mt-4">
     <div class="row">
       {% block content %}
@@ -56,7 +53,7 @@
     </div>
   </div>
 
-  <!-- FOOTER -->
+ 
   <div class="container mt-5">
     <div class="row">
       <div class="col-md-12 text-center">

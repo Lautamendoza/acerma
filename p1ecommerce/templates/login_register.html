@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<style>
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 80vh;
+    }
+    .login-box {
+        background: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 10px #00000033;
+        width: 100%;
+        max-width: 350px;
+    }
+    .tabs {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 1rem;
+    }
+    .tabs button {
+        background: none;
+        border: none;
+        font-weight: bold;
+        cursor: pointer;
+    }
+    .tabs button.active {
+        color: #b6180d
+    }
+    form {
+        display: none;
+        flex-direction: column;
+    }
+    form.active {
+        display: flex;
+    }
+    input {
+        margin-bottom: 10px;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+    button.submit-btn {
+        background: #b6180d;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    .error {
+        color: red;
+        font-size: 0.9em;
+    }
+</style>
+
+<div class="container login-container">
+    <div class="login-box">
+        <div class="tabs">
+            <button onclick="showForm('login')" class="active">Iniciar Sesión</button>
+            <button onclick="showForm('register')">Registrarse</button>
+        </div>
+
+        <form id="login-form" class="active" method="post" action="{% url 'login' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Usuario" required>
+            <input type="password" name="password" placeholder="Contraseña" required>
+            <button type="submit" class="submit-btn">Entrar</button>
+        </form>
+
+        <form id="register-form" method="post" action="{% url 'register' %}">
+            {% csrf_token %}
+            <input type="text" name="username" placeholder="Usuario" required>
+            <input type="email" name="email" placeholder="Correo electrónico" required>
+            <input type="password" name="password1" placeholder="Contraseña" required>
+            <input type="password" name="password2" placeholder="Confirmar contraseña" required>
+            <button type="submit" class="submit-btn">Registrarse</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function showForm(formId) {
+        document.getElementById("login-form").classList.remove("active");
+        document.getElementById("register-form").classList.remove("active");
+        document.getElementById(formId + "-form").classList.add("active");
+
+        const buttons = document.querySelectorAll(".tabs button");
+        buttons.forEach(btn => btn.classList.remove("active"));
+        if (formId === "login") {
+            buttons[0].classList.add("active");
+        } else {
+            buttons[1].classList.add("active");
+        }
+    }
+</script>
+{% endblock %}
