@@ -1,14 +1,15 @@
 {% extends 'base.html' %}
-
+{% load static %}
 {% block content %}
+
 <div class="container mt-4">
-  <h2>Formas de Pago</h2>
-  <ul>
-    <li>💳 Tarjeta de crédito (Visa, MasterCard, etc.)</li>
-    <li>🏦 Transferencia bancaria</li>
-    <li>💵 Efectivo en punto de retiro</li>
-    <li>🧾 Pago Fácil / Rapipago</li>
-    <li>📱 Mercado Pago</li>
-  </ul>
+  <h2>
+    <u style="text-decoration-color: #b6180d;">Formas de Pago</u>
+  </h2>
+  <img src="{% static 'img/formadepago1.jpg' %}" alt="Formas de Pago" class="img-fluid" width="50%" >
 </div>
+<p>
+          <strong>Cuenta corriente:</strong> En caso de no poseer una cuenta corriente, comunicarse con el Departamento de Finanzas para brindarle la documentación necesaria para la apertura de la misma. Los requisitos pueden variar dependiendo de la empresa y las regulaciones financieras. Luego del análisis de estos requisitos, resulta la activación satisfactoria o no de la cuenta corriente.
+          <p><strong>Acopio:</strong> Si posee material acopiado tiene la opción de generar nuevas compras de otros productos del sitio, siendo abonados con dichos materiales acopiados, mediante la realización de una nota de crédito de los mismos y respetando los valores actuales de los productos seleccionados a acreditar para el total de la nueva compra.
+        </p>
 {% endblock %}

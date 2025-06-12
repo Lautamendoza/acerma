@@ -3,7 +3,8 @@ from .models import Product, Category
 from cart.forms import CartAddProductForm
 from django.db.models import Q
 from django.contrib.auth import authenticate, login as auth_login
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User     
+from django.contrib.auth.forms import UserCreationForm
 from django.contrib import messages
 
 def product_list(request, category_slug=None):

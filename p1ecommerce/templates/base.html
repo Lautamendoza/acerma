@@ -3,11 +3,15 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Mi Sitio</title>
+  <title>Menara Corralón</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-
+<div class="BeforeHeader hidden-xs hidden-sm" style="background-color: #b6180d; height: 30px;">
+<div class="col-md-12 text-center">
+        <p class="text-muted">Created by <a href="https://www.instagram.com/lautiti.m/profilecard/?igsh=N3RkeHloaWx0MGs2" target="_blank">Lautaro Mendoza</a></p>
+      </div>
+</div>       
   <!-- NAVBAR -->
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <div class="container">
@@ -23,24 +27,26 @@
           <path d="M11.354 6.354a.5.5 0 0 0-.708-.708L8 8.293 6.854 7.146a.5.5 0 1 0-.708.708l1.5 1.5a.5.5 0 0 0 .708 0z"/>
           <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0m7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0"/>
         </svg>
-        <a href="{% url 'cart:cart_detail' %}"><button type="button" class="btn">Tu carro</button></a>
+        <a href="{% url 'cart:cart_detail' %}"><button type="button" class="btn">Tu carrito</button></a>
       </div>
 
       <div class="d-flex ms-4 align-items-center">
+        <a href="{% url 'tienda:nosotros' %}"><button type="button" class="btn">Nosotros</button></a>
         <a href="{% url 'tienda:formas_de_pago' %}"><button type="button" class="btn">Formas de pago</button></a>
         <a href="{% url 'tienda:cambiosyd' %}"><button type="button" class="btn">Envíos</button></a>
-        <a href="{% url 'tienda:preguntas' %}"><button type="button" class="btn">Preguntas</button></a>
-        <a href="{% url 'tienda:nosotros' %}"><button type="button" class="btn">Nosotros</button></a>
         <a href="{% url 'tienda:hormigon' %}"><button type="button" class="btn">Hormigón</button></a>
+        <a href="{% url 'tienda:preguntas' %}"><button type="button" class="btn">Preguntas</button></a>
+        
+        
 
         {% if user.is_authenticated %}
           <span class="ms-3 me-2">Hola, {{ user.username }}</span>
           <form method="post" action="{% url 'logout' %}" style="display: inline;">
               {% csrf_token %}
-              <button type="submit" class="btn btn-danger">Cerrar sesión</button>
+              <button type="submit" style="background-color: #b6180d;" class="btn btn-danger">Cerrar sesión</button>
           </form>
         {% else %}
-          <a href="{% url 'login' %}"><button type="button" class="btn btn-primary">Iniciar</button></a>
+          <a href="{% url 'login' %}"><button type="button" style="background-color: #b6180d;" class="btn btn-primary">Iniciar</button></a>
         {% endif %}
       </div>
     </div>
@@ -61,7 +67,5 @@
       </div>
     </div>
   </div>
-
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 </body>
 </html>
